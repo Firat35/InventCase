@@ -1,0 +1,38 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Index";
+}
+
+<a class="btn btn-primary" href="@Url.Action("Create","SalesHistory")" role="button">Add Sale History</a>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Id</th>
+        <th>Product Name</th>
+        <th>Cost</th>
+        <th>Sales Price</th>
+        <th>Store Name</th>
+        <th>Date</th>
+        <th>Sales Quantity</th>
+        <th>Stock</th>
+        <th></th>
+    </tr>
+
+    @for (int i = 0; i < Model.Rows.Count; i++)
+    {
+        <tr>
+            <td>@Model.Rows[i][0]</td>
+            <td>@Model.Rows[i][1]</td>
+            <td>@Model.Rows[i][2]</td>
+            <td>@Model.Rows[i][3]</td>
+            <td>@Model.Rows[i][4]</td>
+            <td>@DateTime.Parse(Model.Rows[i][5].ToString()).ToString("dd/MM/yyyy")</td>
+            <td>@Model.Rows[i][6]</td>
+            <td>@Model.Rows[i][7]</td>
+            <td>
+                <a href="@Url.Action("Edit", "SalesHistory", new {@id=@Model.Rows[i][0] })">Edit</a>
+                <a href="@Url.Action("Delete", "SalesHistory", new {@id=@Model.Rows[i][0] })">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+

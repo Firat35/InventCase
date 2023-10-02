@@ -1,0 +1,20 @@
+﻿@model Web.Models.DataModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <ul>
+        <li><a href="@Url.Action("Index","SalesHistory")">Sales History</a></li>
+        <li><a href="@Url.Action("ProfitForStore","Home")">Profit For Given Store</a></li>
+        <li>Best Seller Product : @Model.BestSellerProduct</li>
+        <li>Most Profitable Store : @Model.MostProfitableStore</li>
+    </ul>
+</div>
+<style>
+    ul {
+        list-style-type: none;
+    }
+
+</style>

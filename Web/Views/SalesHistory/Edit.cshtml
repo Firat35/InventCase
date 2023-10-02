@@ -1,0 +1,62 @@
+﻿@model Web.Models.SalesHistoryModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Sale History</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group py-1">
+           Product Name: @Model.ProductName
+        </div>
+
+        <div class="form-group py-1">
+            Store Name: @Model.StoreName
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Date)*@
+                @Html.TextBoxFor(model => model.Date, "{0:yyyy-MM-dd}", new {  @type = "date" })
+                @Html.ValidationMessageFor(model => model.Date)
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.SalesQuantity, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SalesQuantity)
+                @Html.ValidationMessageFor(model => model.SalesQuantity)
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.Stock, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Stock)
+                @Html.ValidationMessageFor(model => model.Stock)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-secondary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,66 @@
+﻿@model Web.Models.SalesHistoryModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Sale History</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.ProductName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ProductId, Model.Products)
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.StoreName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.StoreId, Model.Stores)
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Date,  DateTime.Now.ToString("yyyy-MM-dd"), new{ type = "date", max = DateTime.Today.ToString("yyyy-MM-dd") })
+                @Html.ValidationMessageFor(model => model.Date)
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.SalesQuantity, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SalesQuantity)
+                @Html.ValidationMessageFor(model => model.SalesQuantity)
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.Stock, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Stock)
+                @Html.ValidationMessageFor(model => model.Stock)
+            </div>
+        </div>
+
+        <div class="form-group py-3">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-secondary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
